@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        run: git fetch --depth=500
+      - run: git fetch --depth=500
       - uses: ./
         id: action
         with:
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        run: git fetch --depth=500
+      - run: git fetch --depth=500
       - uses: ./
         id: action
         with:
