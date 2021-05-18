@@ -1,3 +1,30 @@
+# Version 1.0.0 (2021-05-18)
+
+## Features
+- changed the release scripts to release:type ([9ef4beb](https://github.com/John A. Kallergis/changelog-generator/commit/9ef4beb08d82e66ee292b7c41e94bcd9fedbce06))
+- cleaned up the package.json and implemented the cli command ([7db5647](https://github.com/John A. Kallergis/changelog-generator/commit/7db5647ac90c617663e2ef804ad106ced2f44a53))
+- cleaned up the action to use github.context ([bbc4ed3](https://github.com/John A. Kallergis/changelog-generator/commit/bbc4ed37b32167575133f6c3d5639aee5f355911))
+- added yarnrc for customised versioning messages ([14ef274](https://github.com/John A. Kallergis/changelog-generator/commit/14ef274774b87cde75e113b390c285a6fd3de21c))
+- finished the Github Action implementation ([6f63dbf](https://github.com/John A. Kallergis/changelog-generator/commit/6f63dbf4ebfe5b61040b591c9aa47e2c1557e84d))
+- implemented logic to only check for last n tags only ([3dbb87f](https://github.com/John A. Kallergis/changelog-generator/commit/3dbb87fd7fe48813ed3213447f380bd6a5f410b8))
+## Fixes
+- now staging all files after command is finished ([9364639](https://github.com/John A. Kallergis/changelog-generator/commit/93646399d31850f51270c0df84dc6451812aad8e))
+- typo in the package script ([d91b30c](https://github.com/John A. Kallergis/changelog-generator/commit/d91b30c626538a7db58619d1259cdddc64bc27a2))
+- Fixed core action import ([1c79d45](https://github.com/John A. Kallergis/changelog-generator/commit/1c79d451b20f187452b7c6af01dc36be56d5a01e))
+## Chores
+- reverted the deleted action file ([efcef06](https://github.com/John A. Kallergis/changelog-generator/commit/efcef0685f34d86ca152df3a5c77efbddf20458b))
+- removed redundant file ([3b6c824](https://github.com/John A. Kallergis/changelog-generator/commit/3b6c82466602a95f84d6589fd0a282d4f691b5f5))
+- changed the repo url ([94b6b2f](https://github.com/John A. Kallergis/changelog-generator/commit/94b6b2feeae4f956be7540fae6cea5a461072fda))
+## Changed Dependencies
+- **[deps-dev]** bump semver from 6.3.0 to 7.3.5 ([d1aeb77](https://github.com/John A. Kallergis/changelog-generator/commit/d1aeb7772f08aa69454107b48cef4f34989531a8))
+- **[deps-dev]** bump eslint from 7.17.0 to 7.26.0 ([33fab8f](https://github.com/John A. Kallergis/changelog-generator/commit/33fab8f6b0008b43c271310ef325f9e8992b2132))
+- **[deps-dev]** removed semantic-release and added semver ([c026a14](https://github.com/John A. Kallergis/changelog-generator/commit/c026a14dbca12a3349e319b551c3a2261c7883aa))
+- **[deps-dev]** added semantic-release package ([e5b1cde](https://github.com/John A. Kallergis/changelog-generator/commit/e5b1cde7583b0a6cefd56841538235eba04e8f69))
+- **[deps-dev]** bump js-yaml from 3.14.0 to 4.1.0 ([c846af0](https://github.com/John A. Kallergis/changelog-generator/commit/c846af0d05d1e66fa29250ab1a9f9fd84ade1cba))
+- **[deps-dev]** bump @typescript-eslint/parser from 4.23.0 to 4.24.0 ([820fc16](https://github.com/John A. Kallergis/changelog-generator/commit/820fc16a23ce81c801a5cdff59dec305e3f75682))
+- **[deps-dev]** bump @types/node from 14.14.9 to 15.3.0 ([2947a57](https://github.com/John A. Kallergis/changelog-generator/commit/2947a57816082acfcd05be34815244d6aee93cd5))
+
+
 # Version 0.0.1 (2021-05-17)
 
 ## Features
