@@ -29,8 +29,10 @@ async function main(): Promise<void> {
     const tags = `${tagVersion}..HEAD`
     const ctx = {commitUrl, version, tags} as IChangelogContext
     const newChangelog = await generateChangelog(ctx)
-    const currentLog = fs.readFileSync('./CHANGELOG.md', 'utf-8')
-    fs.writeFileSync('./CHANGELOG.md', `${newChangelog}\n\n${currentLog}`)
+    if (newChangelog) {
+      const currentLog = fs.readFileSync('./CHANGELOG.md', 'utf-8')
+      fs.writeFileSync('./CHANGELOG.md', `${newChangelog}\n\n${currentLog}`)
+    }
   } catch (error) {
     console.log({error})
     process.stderr.write(error.message)
