@@ -9486,7 +9486,6 @@ function action() {
     return action_awaiter(this, void 0, void 0, function* () {
         try {
             const hasVersionTagOnHEAD = getHasVersionTagOnHEAD();
-            console.log({ hasVersionTagOnHEAD });
             core.setOutput('hasVersionTagOnHEAD', hasVersionTagOnHEAD);
             const checkForSkip = core.getInput('skipIfNoVersionTagOnHEAD') === 'true';
             if (checkForSkip && !hasVersionTagOnHEAD) {

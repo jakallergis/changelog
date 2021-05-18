@@ -1,3 +1,14 @@
+# Version 1.1.0 (2021-05-18)
+
+## Features
+- added a few testing jobs in the Github workflow ([c4a3a90](https://github.com/John A. Kallergis/changelog-generator/commit/c4a3a906d8a3d8bb9e847db3a2f824d6c1423250))
+## Fixes
+- typo in the test github workflow ([60b1f3a](https://github.com/John A. Kallergis/changelog-generator/commit/60b1f3a167e6dc4a2c35472ab55ed7c11b061950))
+- unshallow the git clone on the github workflows ([86cc637](https://github.com/John A. Kallergis/changelog-generator/commit/86cc637e7547c69b31d4615c92b332c72e471999))
+## Chores
+- code cleaup ([381feaf](https://github.com/John A. Kallergis/changelog-generator/commit/381feaf2e2f377e62af3b78d2769d4930e969757))
+
+
 # Version 1.0.1 (2021-05-18)
 
 ## Fixes
