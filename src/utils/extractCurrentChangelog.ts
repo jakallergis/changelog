@@ -40,25 +40,25 @@ export function extractCurrentChangelog(
     if (features.length) {
       newChangelog += `**Features**\n`
       newChangelog += features.join('\n')
-      newChangelog += '\n'
+      newChangelog += '\n\n'
     }
 
     if (fixes.length) {
       newChangelog += `**Fixes**\n`
       newChangelog += fixes.join('\n')
-      newChangelog += '\n'
+      newChangelog += '\n\n'
     }
 
     if (chores.length) {
       newChangelog += `**Chores**\n`
       newChangelog += chores.join('\n')
-      newChangelog += '\n'
+      newChangelog += '\n\n'
     }
 
     if (deps.length) {
       newChangelog += `**Changed Dependencies**\n`
       newChangelog += deps.join('\n')
-      newChangelog += '\n'
+      newChangelog += '\n\n'
     }
   }
   return newChangelog
