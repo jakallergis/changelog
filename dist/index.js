@@ -9420,7 +9420,7 @@ function extractCurrentChangelog(commits, version) {
     return newChangelog;
 }
 
-;// CONCATENATED MODULE: ./src/generateChangelog.ts
+;// CONCATENATED MODULE: ./src/utils/generateChangelog.ts
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {

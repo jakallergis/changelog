@@ -1,3 +1,11 @@
+# Version 1.0.1 (2021-05-18)
+
+## Fixes
+- no prepending  of new changelog if there are no changes ([4b3138e](https://github.com/John A. Kallergis/changelog-generator/commit/4b3138edd9d7b66b161a7255c5ea3b795c1571b9))
+## Chores
+- tranfered generateChangelog.ts into the utils directory ([5aa755e](https://github.com/John A. Kallergis/changelog-generator/commit/5aa755e9686cf2e2aff1559227b8ec587f6b1a92))
+
+
 # Version 1.0.0 (2021-05-18)
 
 ## Features
