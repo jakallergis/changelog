@@ -7,7 +7,7 @@ export function extractCurrentChangelog(
   version: string
 ): string {
   const date = new Date().toISOString().split('T')[0]
-  let newChangelog = `# Version ${version} (${date})\n\n`
+  let newChangelog = `**Version ${version} (${date})**\n\n`
   if (commits?.length) {
     const features: string[] = []
     const fixes: string[] = []
@@ -38,25 +38,25 @@ export function extractCurrentChangelog(
     }
 
     if (features.length) {
-      newChangelog += `## Features\n`
+      newChangelog += `**Features**\n`
       newChangelog += features.join('\n')
       newChangelog += '\n'
     }
 
     if (fixes.length) {
-      newChangelog += `## Fixes\n`
+      newChangelog += `**Fixes**\n`
       newChangelog += fixes.join('\n')
       newChangelog += '\n'
     }
 
     if (chores.length) {
-      newChangelog += `## Chores\n`
+      newChangelog += `**Chores**\n`
       newChangelog += chores.join('\n')
       newChangelog += '\n'
     }
 
     if (deps.length) {
-      newChangelog += `## Changed Dependencies\n`
+      newChangelog += `**Changed Dependencies**\n`
       newChangelog += deps.join('\n')
       newChangelog += '\n'
     }
