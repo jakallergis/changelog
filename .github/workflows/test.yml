@@ -28,7 +28,7 @@ jobs:
         if: always()
         run: |
           echo 'hasVersionTagOnHEAD: ${{ steps.action.outputs.hasVersionTagOnHEAD }}'
-          echo 'hasVersionTagOnHEAD: ${{ steps.action.outputs.changelog }}'
+          echo 'changelog: ${{ steps.action.outputs.changelog }}'
 
   # make sure the action works on a clean machine without building
   test-action2:
@@ -44,4 +44,4 @@ jobs:
         if: always()
         run: |
           echo 'hasVersionTagOnHEAD: ${{ steps.action.outputs.hasVersionTagOnHEAD }}'
-          echo 'hasVersionTagOnHEAD: ${{ steps.action.outputs.changelog }}'
+          echo 'changelog: ${{ steps.action.outputs.changelog }}'
