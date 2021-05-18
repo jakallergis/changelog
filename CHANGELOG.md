@@ -1,3 +1,11 @@
+**Version 1.1.1 (2021-05-18)**
+
+**Features**
+- converted markdown to be compatible with Slack ([10a1554](https://github.com/John A. Kallergis/changelog-generator/commit/10a155405b05c706772164133cd38c763dfaa933))
+**Chores**
+- code cleanup ([1b83010](https://github.com/John A. Kallergis/changelog-generator/commit/1b830108f44418c913b44a690e931e17c7951ca2))
+
+
 # Version 1.1.0 (2021-05-18)
 
 ## Features
