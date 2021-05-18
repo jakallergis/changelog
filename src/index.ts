@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import fs from 'fs'
 import * as github from '@actions/github'
 import {ReleaseType} from 'semver'
