@@ -1,10 +1,19 @@
-import fs from 'fs'
 import * as core from '@actions/core'
+import * as github from '@actions/github'
 import getTagsRange from './utils/getTagsRange'
-import getCurrentVersion from './utils/getCurrentVersion'
+import getTagVersion from './utils/getTagVersion'
 import generateChangelog, {IChangelogContext} from './generateChangelog'
 import getHasVersionTagOnHEAD from './utils/getHasVersionTagOnHEAD'
 
+/**
+ * This is the code that the Github Action will run.
+ * Because we won't have access to the main project's
+ * code at the time of the creation, we will be getting
+ * our version numbers strictly from the git tags.
+ * TODO: See if I can access the actual project's
+ *       package.json from when this runs as an
+ *       action in Github
+ */
 async function action(): Promise<void> {
   try {
     const hasVersionTagOnHEAD = getHasVersionTagOnHEAD()
@@ -15,18 +24,21 @@ async function action(): Promise<void> {
       core.info('Action is skipped because HEAD does not include a version tag')
       return
     }
-    const repo = core.getInput('repo')
-    const owner = core.getInput('owner')
-    const version = getCurrentVersion()
+    const serverUrl = github.context.serverUrl
+    if (!process.env['GITHUB_REPOSITORY']) {
+      process.env['GITHUB_REPOSITORY'] = 'jakallergis/changelog-generator'
+    }
+    const {repo, owner} = github.context.repo || {}
+    const commitUrl = `${serverUrl}/${owner}/${repo}/commit`
+    const version = getTagVersion()
     const tags = getTagsRange(2)
-    const ctx = {repo, owner, version, tags} as IChangelogContext
+    const ctx = {commitUrl, version, tags} as IChangelogContext
     const newChangelog = await generateChangelog(ctx)
-    const currentLog = fs.readFileSync('./CHANGELOG.md', 'utf-8')
-    const newLog = `${newChangelog}\n\n${currentLog}`
-    core.setOutput('changelog', newLog)
+    core.setOutput('changelog', newChangelog)
   } catch (error) {
     console.log({error})
     core.setFailed(error.message)
+    process.stderr.write(error.message)
   }
 }
 

@@ -25,7 +25,7 @@
     "node",
     "setup"
   ],
-  "author": "",
+  "author": "John A. Kallergis",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.7",

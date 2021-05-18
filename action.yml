@@ -2,15 +2,9 @@ name: 'Your name here'
 description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
-  repo:
-    description: 'The repo name. It will be used to create diff links'
-    required: true
-  owner:
-    description: 'The repo owner. It will be used to create diff links'
-    required: true
   skipIfNoVersionTagOnHEAD:
-      description: 'Whether or not to skip when HEAD is not version tagged'
-      required: false
+    description: 'Whether or not to skip when HEAD is not version tagged'
+    required: false
 outputs:
   hasVersionTagOnHEAD:
     description: 'Whether or not we are on a version tagged commit'

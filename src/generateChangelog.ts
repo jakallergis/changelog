@@ -3,8 +3,7 @@ import {extractCurrentChangelog} from './utils/extractCurrentChangelog'
 import formatUnicorn from './utils/formatUnicorn'
 
 export interface IChangelogContext {
-  repo: string
-  owner: string
+  commitUrl: string
   version: string
   tags: string
 }

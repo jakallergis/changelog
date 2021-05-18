@@ -4,13 +4,13 @@ import {join} from 'path'
 
 // shows how the runner will run a javascript action with env / stdout protocol
 test('test runs', () => {
-  env['INPUT_REPO'] = 'changelog-generator'
-  env['INPUT_OWNER'] = 'jakallergis'
-  env['INPUT_SKIPIFNOVERSIONTAGONHEAD'] = 'true'
+  env['INPUT_SKIPIFNOVERSIONTAGONHEAD'] = 'false'
   const np = execPath
   const ip = join(__dirname, '..', 'lib', 'src', 'action.js')
-  const options: cp.ExecFileSyncOptions = {
-    env
+  const options: cp.ExecFileSyncOptions = {env}
+  const runner = () => {
+    const result = cp.execFileSync(np, [ip], options).toString('utf-8')
+    console.log(result)
   }
-  console.log(cp.execFileSync(np, [ip], options).toString())
+  expect(runner).not.toThrow()
 })

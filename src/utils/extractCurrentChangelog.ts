@@ -15,7 +15,7 @@ export function extractCurrentChangelog(
     const deps: string[] = []
     for (const commit of commits) {
       const {sha, shaShort, message, body, type, scope} = commit
-      const link = `[${shaShort}](https://github.com/{owner}/{repo}/commit/${sha})`
+      const link = `[${shaShort}]({commitUrl}/${sha})`
       const formattedScope = scope ? `**[${scope}]** ` : ''
       let formattedText = `- ${formattedScope}${message} (${link})`
 

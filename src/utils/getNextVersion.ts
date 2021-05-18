@@ -1,6 +1,13 @@
 import semver, {ReleaseType} from 'semver'
-import {version} from '../../package.json'
+import invariant from './invariant'
 
-export default function getNextVersion(type: ReleaseType): string {
+export default function getNextVersion(
+  version: string,
+  type: ReleaseType
+): string {
+  invariant(
+    semver.valid(version),
+    `Can't determine next version because the current version passed is not valid [${version}]`
+  )
   return semver.inc(version, type) || version
 }
