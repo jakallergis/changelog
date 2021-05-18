@@ -1,3 +1,11 @@
+**Version 1.2.0 (2021-05-18)**
+
+**Features**
+- added the bin folder for the cli ([5d2f40e](https://github.com/jakallergis/changelog-generator/commit/5d2f40ee1d6cf09a2183084d67d5d159ef4744f1))
+- renamed the project for better npm publishing ([13b7b2f](https://github.com/jakallergis/changelog-generator/commit/13b7b2f603fb7df8b9bcc828d2a4fa69f9c95d08))
+
+
+
 **Version 1.1.3 (2021-05-18)**
 
 **Fixes**
