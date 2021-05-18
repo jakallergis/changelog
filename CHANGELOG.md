@@ -1,3 +1,10 @@
+**Version 1.4.0 (2021-05-18)**
+
+**Fixes**
+- added a shebang - supposedly to make the cli work ([bf10255](https://github.com/jakallergis/changelog/commit/bf1025586bad472cfed420c4ceb685356d33a29e))
+
+
+
 **Version 1.3.1 (2021-05-18)**
 
 **Chores**
