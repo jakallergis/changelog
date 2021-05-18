@@ -1,5 +1,5 @@
 import {version} from '../../package.json'
 
-export function getCurrentVersion(): string {
+export default function getCurrentVersion(): string {
   return version
 }

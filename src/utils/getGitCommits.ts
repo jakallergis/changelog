@@ -2,30 +2,12 @@ import cp from 'child_process'
 import ICommit from '../models/ICommit'
 import {CommitTypes} from '../models/CommitTypes'
 import {CommitScopes} from '../models/CommitScopes'
-import formatUnicorn from './formatUnicorn'
 
 const DEL = '----DELIMITER----'
 const END = '----END_COMMIT----'
-const LAST_TWO_TAGS_CMD = 'git tag --sort=-version:refname | head -n {count}'
 const CMD = `git log --format='%s${DEL}%b${DEL}%H${DEL}%h${END}' --no-merges`
 
-function getTagsRange(count = 2): string {
-  const command = formatUnicorn(LAST_TWO_TAGS_CMD, {count})
-  const tags = cp
-    .execSync(command)
-    .toString('utf-8')
-    .split('\n')
-    .filter(Boolean)
-  const mostRecentTag = tags[0]
-  const oldestTag = tags[tags.length - 1]
-  if (!mostRecentTag && !oldestTag) return ''
-  if (mostRecentTag === oldestTag) return `${mostRecentTag}..HEAD`
-  if (mostRecentTag && oldestTag) return `${oldestTag}..${mostRecentTag}`
-  return ''
-}
-
-export default function getGitCommits(): ICommit[] {
-  const tagsRange = getTagsRange(2)
+export default function getGitCommits(tagsRange: string): ICommit[] {
   const COMMITS_CMD = `${CMD} ${tagsRange}`
   const output = cp.execSync(COMMITS_CMD).toString('utf-8')
 

@@ -3,11 +3,19 @@ description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
   repo:
-    required: true
     description: 'The repo name. It will be used to create diff links'
-  owner:
     required: true
-    description: 'The repo owner. It will be used to create diff links
+  owner:
+    description: 'The repo owner. It will be used to create diff links'
+    required: true
+  skipIfNoVersionTagOnHEAD:
+      description: 'Whether or not to skip when HEAD is not version tagged'
+      required: false
+outputs:
+  hasVersionTagOnHEAD:
+    description: 'Whether or not we are on a version tagged commit'
+  changelog:
+    description: 'A markdown string with the changelog of the current version tag'
 runs:
   using: 'node12'
   main: 'dist/index.js'

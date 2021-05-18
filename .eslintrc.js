@@ -21,7 +21,10 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        'no-console': 'off'
+        '@typescript-eslint/no-shadow': 'error',
+        'no-console': 'off',
+        'no-shadow': 'off',
+        'import/no-namespace': 'off'
       },
       plugins: ['@typescript-eslint/eslint-plugin'],
       extends: [

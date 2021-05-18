@@ -4,10 +4,11 @@ import {join} from 'path'
 
 // shows how the runner will run a javascript action with env / stdout protocol
 test('test runs', () => {
-  env['repo'] = 'jakallergis'
-  env['owner'] = 'jakallergis'
+  env['INPUT_REPO'] = 'changelog-generator'
+  env['INPUT_OWNER'] = 'jakallergis'
+  env['INPUT_SKIPIFNOVERSIONTAGONHEAD'] = 'true'
   const np = execPath
-  const ip = join(__dirname, '..', 'lib', 'src', 'main.js')
+  const ip = join(__dirname, '..', 'lib', 'src', 'action.js')
   const options: cp.ExecFileSyncOptions = {
     env
   }
