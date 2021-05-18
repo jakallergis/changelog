@@ -1,3 +1,10 @@
+**Version 1.3.0 (2021-05-18)**
+
+**Chores**
+- renamed the repo and package ([b86b7d2](https://github.com/jakallergis/changelog/commit/b86b7d20f59492d533ecfbf6f6e8864df9850ec0))
+
+
+
 **Version 1.2.0 (2021-05-18)**
 
 **Features**
