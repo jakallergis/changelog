@@ -1,3 +1,10 @@
+**Version 1.1.2 (2021-05-18)**
+
+**Chores**
+- markdown cleanup ([d43ebb6](https://github.com/John A. Kallergis/changelog-generator/commit/d43ebb686ffaeb4707e7640659523b1e8b0da7ef))
+
+
+
 **Version 1.1.1 (2021-05-18)**
 
 **Features**
