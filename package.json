@@ -1,20 +1,21 @@
 {
   "name": "changelog-generator",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "private": true,
   "description": "A changelog generator to use as a Github Action or an npm module",
   "main": "src/index.ts",
   "scripts": {
-    "run": "ts-node .",
+    "start": "ts-node .",
     "build": "tsc",
     "build:action": "ncc build src/action.ts --source-map --license licenses.txt",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
     "test": "jest",
-    "package": "yarn format && yarn lint && yarn build && yarn test",
-    "package:action": "yarn package && yarn build:action",
-    "patch": "yarn package:action && ts-node . && yarn version --patch --no-git-tag-version"
+    "package": "yarn format && yarn lint && yarn build && yarn test &&  && yarn build:action",
+    "patch": "yarn package && ts-node . patch && yarn version --patch",
+    "minor": "yarn package && ts-node . minor && yarn version --minor",
+    "major": "yarn package && ts-node . major && yarn version --major"
   },
   "repository": {
     "type": "git",

@@ -2,15 +2,19 @@ import path from 'path'
 
 let packageJSON = {} as any
 
-export default function getCurrentVersion(): string {
+interface IPackageJSON {
+  name: string
+  version: string
+  author?: {name: string}
+}
+
+export default function getPackageJSON(): IPackageJSON {
   try {
     const mainPath = process.env.INIT_CWD
-    const fullPath = path.resolve(mainPath!)
     const packageJSONPath = path.resolve(mainPath!, 'package.json')
     packageJSON = require(packageJSONPath)
-    console.log({mainPath, fullPath, packageJSONPath})
   } catch (e) {
     console.log(`[ERROR]: ${e.message}`)
   }
-  return packageJSON.version || 'v0.0.0'
+  return packageJSON
 }
