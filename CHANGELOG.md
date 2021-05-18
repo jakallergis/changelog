@@ -1,3 +1,10 @@
+**Version 1.3.1 (2021-05-18)**
+
+**Chores**
+- updated the .idea folder ([6fe4e82](https://github.com/jakallergis/changelog/commit/6fe4e8251f7ca7b8e324fcd2538dcfe7ade835c1))
+
+
+
 **Version 1.3.0 (2021-05-18)**
 
 **Chores**
