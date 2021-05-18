@@ -1,3 +1,11 @@
+**Version 1.1.3 (2021-05-18)**
+
+**Fixes**
+- package no longer marked as private in package.json ([991439e](https://github.com/John A. Kallergis/changelog-generator/commit/991439ef6611b587bdf222d2096fd3dbf24eff9b))
+  - This was preventing yarn from publishing it
+
+
+
 **Version 1.1.2 (2021-05-18)**
 
 **Chores**
