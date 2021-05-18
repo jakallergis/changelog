@@ -3,9 +3,8 @@ import path from 'path'
 let packageJSON = {} as any
 
 interface IPackageJSON {
-  name: string
+  repository: string
   version: string
-  author?: {name: string}
 }
 
 export default function getPackageJSON(): IPackageJSON {

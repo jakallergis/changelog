@@ -18,9 +18,7 @@ async function main(): Promise<void> {
     const packageJSON = getPackageJSON()
     const serverUrl = github.context.serverUrl
     if (!process.env['GITHUB_REPOSITORY']) {
-      const owner = packageJSON.author?.name ?? packageJSON.author
-      const repo = packageJSON.name
-      process.env['GITHUB_REPOSITORY'] = `${owner}/${repo}`
+      process.env['GITHUB_REPOSITORY'] = packageJSON.repository
     }
     const {repo, owner} = github.context.repo || {}
     const commitUrl = `${serverUrl}/${owner}/${repo}/commit`
