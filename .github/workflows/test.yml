@@ -1,9 +1,9 @@
 name: 'build-test'
 on: # rebuild any PRs and main branch changes
   pull_request:
-  push:
-    branches:
-      - main
+  create:
+    tags:
+      - 'v*'
 
 jobs:
   build: # make sure build/ci work properly
@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        run: git fetch --depth=500
       - uses: ./
         id: action
         with:
@@ -34,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        run: git fetch --depth=500
       - uses: ./
         id: action
         with:
