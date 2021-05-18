@@ -12,7 +12,7 @@
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
     "test": "jest",
-    "package": "yarn format && yarn lint && yarn build && yarn test &&  && yarn build:action",
+    "package": "yarn format && yarn lint && yarn build && yarn test && yarn build:action",
     "release:patch": "yarn package && ts-node . patch && yarn version --patch",
     "release:minor": "yarn package && ts-node . minor && yarn version --minor",
     "release:major": "yarn package && ts-node . major && yarn version --major"
