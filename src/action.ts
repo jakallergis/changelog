@@ -2,7 +2,7 @@ import * as core from '@actions/core'
 import * as github from '@actions/github'
 import getTagsRange from './utils/getTagsRange'
 import getTagVersion from './utils/getTagVersion'
-import generateChangelog, {IChangelogContext} from './generateChangelog'
+import generateChangelog, {IChangelogContext} from './utils/generateChangelog'
 import getHasVersionTagOnHEAD from './utils/getHasVersionTagOnHEAD'
 
 /**

@@ -5,7 +5,7 @@ import {VersionTypes} from './models/VersionTypes'
 import invariant from './utils/invariant'
 import getNextVersion from './utils/getNextVersion'
 import getPackageJSON from './utils/getPackageJSON'
-import generateChangelog, {IChangelogContext} from './generateChangelog'
+import generateChangelog, {IChangelogContext} from './utils/generateChangelog'
 
 async function main(): Promise<void> {
   try {

@@ -1,6 +1,6 @@
-import getGitCommits from './utils/getGitCommits'
-import {extractCurrentChangelog} from './utils/extractCurrentChangelog'
-import formatUnicorn from './utils/formatUnicorn'
+import getGitCommits from './getGitCommits'
+import {extractCurrentChangelog} from './extractCurrentChangelog'
+import formatUnicorn from './formatUnicorn'
 
 export interface IChangelogContext {
   commitUrl: string
