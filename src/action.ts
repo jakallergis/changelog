@@ -17,7 +17,6 @@ import getHasVersionTagOnHEAD from './utils/getHasVersionTagOnHEAD'
 async function action(): Promise<void> {
   try {
     const hasVersionTagOnHEAD = getHasVersionTagOnHEAD()
-    console.log({hasVersionTagOnHEAD})
     core.setOutput('hasVersionTagOnHEAD', hasVersionTagOnHEAD)
     const checkForSkip = core.getInput('skipIfNoVersionTagOnHEAD') === 'true'
     if (checkForSkip && !hasVersionTagOnHEAD) {
