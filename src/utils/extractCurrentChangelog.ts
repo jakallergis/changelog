@@ -69,7 +69,7 @@ class SlackFormatter extends Formatter {
   headerTemplate = '*{text}*\n\n'
   subHeaderTemplate = '*{text}*\n'
   scopeTemplate = '*[${scope}]*'
-  linkTemplate = '<{text}|{url}>'
+  linkTemplate = '<{url}|{text}>'
 }
 
 const formatters = {
