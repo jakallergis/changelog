@@ -1,3 +1,20 @@
+# Version 1.5.0 (2021-05-19)
+
+### Features
+- added better formatting for Slack ([428cac1](https://github.com/jakallergis/changelog/commit/428cac1208332b5c13eb1e7495fb04f096b2292c))
+
+### Fixes
+
+
+### Chores
+- ignored the .idea folder ([afc6017](https://github.com/jakallergis/changelog/commit/afc601768705e61c86ae85f66acd2f0a6ff1f8ec))
+- cleanup ([f800bbb](https://github.com/jakallergis/changelog/commit/f800bbbcac2a766232609d52d71d326847161f3b))
+
+### Changed Dependencies
+
+
+
+
 **Version 1.4.0 (2021-05-18)**
 
 **Fixes**

@@ -9365,22 +9365,94 @@ var CommitScopes;
 ;// CONCATENATED MODULE: ./src/utils/extractCurrentChangelog.ts
 
 
-function extractCurrentChangelog(commits, version) {
-    const date = new Date().toISOString().split('T')[0];
-    let newChangelog = `**Version ${version} (${date})**\n\n`;
+
+class Formatter {
+    constructor() {
+        this.headerTemplate = '# {text}\n\n';
+        this.subHeaderTemplate = '### {text}\n';
+        this.scopeTemplate = '**[${scope}]**';
+        this.linkTemplate = '[{text}]({url})';
+    }
+    formatCommit(commit) {
+        const { message, type } = commit;
+        const link = this.getCommitLink(commit);
+        const scope = this.getCommitScope(commit);
+        const formattedBody = this.getCommitBody(commit);
+        let formattedText = `- ${scope}${message} (${link})`;
+        if ([CommitTypes.FEATURE, CommitTypes.FIX].includes(type)) {
+            formattedText = `${formattedText}${formattedBody}`;
+        }
+        return formattedText;
+    }
+    formatVersionTitle(version) {
+        const date = new Date().toISOString().split('T')[0];
+        return this.getHeader(`Version ${version} (${date})`);
+    }
+    formatSectionList(title, items) {
+        if (!(title || items.length))
+            return '';
+        let string = this.getSubHeader(title);
+        string += items.join('\n');
+        string += '\n\n';
+        return string;
+    }
+    /** Getters / Setters */
+    getHeader(text) {
+        if (!text)
+            return '';
+        return formatUnicorn(this.headerTemplate, { text });
+    }
+    getSubHeader(text) {
+        if (!text)
+            return '';
+        return formatUnicorn(this.subHeaderTemplate, { text });
+    }
+    getCommitLink(commit) {
+        if (!((commit === null || commit === void 0 ? void 0 : commit.sha) && (commit === null || commit === void 0 ? void 0 : commit.shaShort)))
+            return '';
+        const text = commit.shaShort;
+        const url = `{commitUrl}/${commit.sha}`;
+        return formatUnicorn(this.linkTemplate, { text, url });
+    }
+    getCommitScope(commit) {
+        if (!(commit === null || commit === void 0 ? void 0 : commit.scope))
+            return '';
+        const string = formatUnicorn(this.scopeTemplate, { scope: commit.scope });
+        return `${string} `;
+    }
+    getCommitBody(commit) {
+        var _a;
+        if (!((_a = commit === null || commit === void 0 ? void 0 : commit.body) === null || _a === void 0 ? void 0 : _a.length))
+            return '';
+        return `\n  - ${commit.body.join('\n  - ')}`;
+    }
+}
+class SlackFormatter extends Formatter {
+    constructor() {
+        super(...arguments);
+        this.headerTemplate = '*{text}*\n\n';
+        this.subHeaderTemplate = '*{text}*\n';
+        this.scopeTemplate = '*[${scope}]*';
+        this.linkTemplate = '<{text}|{url}>';
+    }
+}
+const formatters = {
+    slack: new SlackFormatter(),
+    markdown: new Formatter()
+};
+function extractCurrentChangelog(commits, version, format = 'markdown') {
+    const formatter = formatters[format] || formatters.markdown;
+    let newChangelog = formatter.formatVersionTitle(version);
     if (commits === null || commits === void 0 ? void 0 : commits.length) {
         const features = [];
         const fixes = [];
         const chores = [];
         const deps = [];
         for (const commit of commits) {
-            const { sha, shaShort, message, body, type, scope } = commit;
-            const link = `[${shaShort}]({commitUrl}/${sha})`;
-            const formattedScope = scope ? `**[${scope}]** ` : '';
-            let formattedText = `- ${formattedScope}${message} (${link})`;
-            if (type === CommitTypes.CHORE) {
-                const isDep = scope === CommitScopes.DEPS;
-                const isDepDev = scope === CommitScopes.DEPS_DEV;
+            const formattedText = formatter.formatCommit(commit);
+            if (commit.type === CommitTypes.CHORE) {
+                const isDep = commit.scope === CommitScopes.DEPS;
+                const isDepDev = commit.scope === CommitScopes.DEPS_DEV;
                 if (isDep || isDepDev) {
                     deps.push(formattedText);
                 }
@@ -9389,33 +9461,15 @@ function extractCurrentChangelog(commits, version) {
                 }
                 continue;
             }
-            const formattedBody = (body === null || body === void 0 ? void 0 : body.length) ? `\n  - ${body.join('\n  - ')}` : '';
-            formattedText = `${formattedText}${formattedBody}`;
-            if (type === CommitTypes.FEATURE)
+            if (commit.type === CommitTypes.FEATURE)
                 features.push(formattedText);
-            if (type === CommitTypes.FIX)
+            if (commit.type === CommitTypes.FIX)
                 fixes.push(formattedText);
         }
-        if (features.length) {
-            newChangelog += `**Features**\n`;
-            newChangelog += features.join('\n');
-            newChangelog += '\n\n';
-        }
-        if (fixes.length) {
-            newChangelog += `**Fixes**\n`;
-            newChangelog += fixes.join('\n');
-            newChangelog += '\n\n';
-        }
-        if (chores.length) {
-            newChangelog += `**Chores**\n`;
-            newChangelog += chores.join('\n');
-            newChangelog += '\n\n';
-        }
-        if (deps.length) {
-            newChangelog += `**Changed Dependencies**\n`;
-            newChangelog += deps.join('\n');
-            newChangelog += '\n\n';
-        }
+        newChangelog += formatter.formatSectionList('Features', features);
+        newChangelog += formatter.formatSectionList('Fixes', fixes);
+        newChangelog += formatter.formatSectionList('Chores', chores);
+        newChangelog += formatter.formatSectionList('Changed Dependencies', deps);
     }
     return newChangelog;
 }
@@ -9438,7 +9492,7 @@ function generateChangelog(ctx) {
         const commits = getGitCommits(ctx.tags);
         if (!commits.length)
             return '';
-        const newChangelog = extractCurrentChangelog(commits, ctx.version);
+        const newChangelog = extractCurrentChangelog(commits, ctx.version, ctx.format);
         return formatUnicorn(newChangelog, ctx);
     });
 }
@@ -9500,8 +9554,13 @@ function action() {
             const commitUrl = `${serverUrl}/${owner}/${repo}/commit`;
             const version = getTagVersion();
             const tags = getTagsRange(2);
-            const ctx = { commitUrl, version, tags };
+            const format = 'slack';
+            const ctx = { commitUrl, version, tags, format };
             const newChangelog = yield generateChangelog(ctx);
+            core.info('New Changelog:');
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            core.debug({ newChangelog });
             core.setOutput('changelog', newChangelog);
         }
         catch (error) {

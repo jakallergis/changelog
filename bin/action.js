@@ -64,8 +64,13 @@ function action() {
             const commitUrl = `${serverUrl}/${owner}/${repo}/commit`;
             const version = getTagVersion_1.default();
             const tags = getTagsRange_1.default(2);
-            const ctx = { commitUrl, version, tags };
+            const format = 'slack';
+            const ctx = { commitUrl, version, tags, format };
             const newChangelog = yield generateChangelog_1.default(ctx);
+            core.info('New Changelog:');
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            core.debug({ newChangelog });
             core.setOutput('changelog', newChangelog);
         }
         catch (error) {

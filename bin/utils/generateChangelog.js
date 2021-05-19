@@ -20,7 +20,7 @@ function generateChangelog(ctx) {
         const commits = getGitCommits_1.default(ctx.tags);
         if (!commits.length)
             return '';
-        const newChangelog = extractCurrentChangelog_1.extractCurrentChangelog(commits, ctx.version);
+        const newChangelog = extractCurrentChangelog_1.extractCurrentChangelog(commits, ctx.version, ctx.format);
         return formatUnicorn_1.default(newChangelog, ctx);
     });
 }

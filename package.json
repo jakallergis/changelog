@@ -1,6 +1,6 @@
 {
   "name": "@jakallergis/changelog",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": false,
   "repository": "jakallergis/changelog",
   "description": "A changelog generator to use as a Github Action or an npm module",
