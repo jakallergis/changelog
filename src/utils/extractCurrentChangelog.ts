@@ -27,7 +27,7 @@ class Formatter {
   }
 
   formatSectionList(title: string, items: string[]): string {
-    if (!(title || items.length)) return ''
+    if (!(title && items.length)) return ''
     let string = this.getSubHeader(title)
     string += items.join('\n')
     string += '\n\n'
