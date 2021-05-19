@@ -1,3 +1,10 @@
+# Version 1.6.1 (2021-05-19)
+
+### Chores
+- slack markdown improvements ([0df6701](https://github.com/jakallergis/changelog/commit/0df67014398de797c4694be06d6ad5bc7d836933))
+
+
+
 # Version 1.6.0 (2021-05-19)
 
 ### Features
