@@ -4,7 +4,6 @@ import getTagsRange from './utils/getTagsRange'
 import getTagVersion from './utils/getTagVersion'
 import generateChangelog, {IChangelogContext} from './utils/generateChangelog'
 import getHasVersionTagOnHEAD from './utils/getHasVersionTagOnHEAD'
-import setEvnVar from './utils/setEvnVar'
 
 /**
  * This is the code that the Github Action will run.
@@ -35,8 +34,6 @@ async function action(): Promise<void> {
     const format = 'slack'
     const ctx = {commitUrl, version, tags, format} as IChangelogContext
     const newChangelog = await generateChangelog(ctx)
-    const envVarSet = setEvnVar('VERSION_CHANGELOG', newChangelog)
-    core.setOutput('envVarSet', envVarSet)
     core.setOutput('changelog', newChangelog)
   } catch (error) {
     console.log({error})

@@ -10,8 +10,6 @@ outputs:
     description: 'Whether or not we are on a version tagged commit'
   changelog:
     description: 'A markdown string with the changelog of the current version tag'
-  envVarSet:
-    description: 'Whether or not the action was successful in setting the changelog in the env vars'
 runs:
   using: 'node12'
   main: 'dist/index.js'
