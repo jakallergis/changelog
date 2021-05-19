@@ -9511,14 +9511,23 @@ function getHasVersionTagOnHEAD() {
     return !!semver_default().valid(tag);
 }
 
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(5747);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
 ;// CONCATENATED MODULE: ./src/utils/setEvnVar.ts
 
 
-const setEvnVar_CMD = 'echo "{key}={value}" >> $GITHUB_ENV';
+
+const setEvnVar_CMD = `body=$(cat ./temp)
+body="\${body//'%'/'%25'}"
+body="\${body//$'\n'/'%0A'}"
+body="\${body//$'\r'/'%0D'}"
+echo "::set-env name={key}::$body"
+`;
 function setEvnVar(key, value) {
     try {
-        const escapedValue = value.replace('"', '\\"');
-        const command = formatUnicorn(setEvnVar_CMD, { key, value: escapedValue });
+        external_fs_default().writeFileSync('./temp', value);
+        const command = formatUnicorn(setEvnVar_CMD, { key });
         external_child_process_default().execSync(command).toString('utf-8');
         return true;
     }

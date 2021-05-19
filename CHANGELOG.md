@@ -1,3 +1,10 @@
+# Version 1.5.3 (2021-05-19)
+
+### Chores
+- one more attempt for a multiline env var ([ab5e230](https://github.com/jakallergis/changelog/commit/ab5e23017a0dea421cce3a2316ac1e6eb4082e89))
+
+
+
 # Version 1.5.2 (2021-05-19)
 
 ### Features

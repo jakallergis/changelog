@@ -1,0 +1,8 @@
+*Version v1.5.2 (2021-05-19)*
+
+*Features*
+- added new setEnvVar functionality and fixed slack formatting for links (<https://github.com/jakallergis/changelog-generator/commit/865c5058b28ab373d80273c6c8376a322307d514|865c505>)
+
+*Fixes*
+- stopped setEnvVar from throwing (<https://github.com/jakallergis/changelog-generator/commit/c822411341d5f8882d38be9e757057418e655de2|c822411>)
+
