@@ -74,7 +74,7 @@ class SlackFormatter extends Formatter {
         this.headerTemplate = '*{text}*\n\n';
         this.subHeaderTemplate = '*{text}*\n';
         this.scopeTemplate = '*[${scope}]*';
-        this.linkTemplate = '<{text}|{url}>';
+        this.linkTemplate = '<{url}|{text}>';
     }
 }
 const formatters = {

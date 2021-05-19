@@ -9433,7 +9433,7 @@ class SlackFormatter extends Formatter {
         this.headerTemplate = '*{text}*\n\n';
         this.subHeaderTemplate = '*{text}*\n';
         this.scopeTemplate = '*[${scope}]*';
-        this.linkTemplate = '<{text}|{url}>';
+        this.linkTemplate = '<{url}|{text}>';
     }
 }
 const formatters = {
@@ -9511,6 +9511,24 @@ function getHasVersionTagOnHEAD() {
     return !!semver_default().valid(tag);
 }
 
+;// CONCATENATED MODULE: ./src/utils/setEvnVar.ts
+
+
+const setEvnVar_CMD = 'echo "{key}={value}" >> $GITHUB_ENV';
+function setEvnVar(key, value) {
+    try {
+        const escapedValue = value.replace('"', '\\"');
+        const command = formatUnicorn(setEvnVar_CMD, { key, value: escapedValue });
+        external_child_process_default().execSync(command).toString('utf-8');
+        return true;
+    }
+    catch (error) {
+        console.log({ error });
+        process.stderr.write(error.message);
+        return false;
+    }
+}
+
 ;// CONCATENATED MODULE: ./src/action.ts
 var action_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -9521,6 +9539,7 @@ var action_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _a
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+
 
 
 
@@ -9557,10 +9576,8 @@ function action() {
             const format = 'slack';
             const ctx = { commitUrl, version, tags, format };
             const newChangelog = yield generateChangelog(ctx);
-            core.info('New Changelog:');
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            core.debug({ newChangelog });
+            const envVarSet = setEvnVar('VERSION_CHANGELOG', newChangelog);
+            core.setOutput('envVarSet', envVarSet);
             core.setOutput('changelog', newChangelog);
         }
         catch (error) {
