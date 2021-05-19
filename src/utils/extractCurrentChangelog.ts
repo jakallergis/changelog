@@ -8,13 +8,15 @@ class Formatter {
   subHeaderTemplate = '### {text}\n'
   scopeTemplate = '**[${scope}]**'
   linkTemplate = '[{text}]({url})'
+  commitTemplate = '- {scope}{message} ({link})'
 
   formatCommit(commit: ICommit): string {
     const {message, type} = commit
     const link = this.getCommitLink(commit)
     const scope = this.getCommitScope(commit)
     const formattedBody = this.getCommitBody(commit)
-    let formattedText = `- ${scope}${message} (${link})`
+    const messageCtx = {scope, message, link}
+    let formattedText = formatUnicorn(this.commitTemplate, messageCtx)
     if ([CommitTypes.FEATURE, CommitTypes.FIX].includes(type)) {
       formattedText = `${formattedText}${formattedBody}`
     }
@@ -70,6 +72,7 @@ class SlackFormatter extends Formatter {
   subHeaderTemplate = '*{text}*\n'
   scopeTemplate = '*[${scope}]*'
   linkTemplate = '<{url}|{text}>'
+  commitTemplate = '* {scope}{message} ({link})'
 }
 
 const formatters = {
