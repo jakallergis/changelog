@@ -6,6 +6,7 @@ export interface IChangelogContext {
   commitUrl: string
   version: string
   tags: string
+  format?: 'slack' | 'markdown'
 }
 
 export default async function generateChangelog(
@@ -13,6 +14,6 @@ export default async function generateChangelog(
 ): Promise<string> {
   const commits = getGitCommits(ctx.tags)
   if (!commits.length) return ''
-  const newChangelog = extractCurrentChangelog(commits, ctx.version)
+  const newChangelog = extractCurrentChangelog(commits, ctx.version, ctx.format)
   return formatUnicorn(newChangelog, ctx)
 }

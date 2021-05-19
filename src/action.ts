@@ -31,8 +31,13 @@ async function action(): Promise<void> {
     const commitUrl = `${serverUrl}/${owner}/${repo}/commit`
     const version = getTagVersion()
     const tags = getTagsRange(2)
-    const ctx = {commitUrl, version, tags} as IChangelogContext
+    const format = 'slack'
+    const ctx = {commitUrl, version, tags, format} as IChangelogContext
     const newChangelog = await generateChangelog(ctx)
+    core.info('New Changelog:')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    core.debug({newChangelog})
     core.setOutput('changelog', newChangelog)
   } catch (error) {
     console.log({error})
