@@ -1,3 +1,10 @@
+# Version 1.5.1 (2021-05-19)
+
+### Fixes
+- not showing empty sections ([356d743](https://github.com/jakallergis/changelog/commit/356d743bd4e456e9fc25969a6c115325db0eaefd))
+
+
+
 # Version 1.5.0 (2021-05-19)
 
 ### Features

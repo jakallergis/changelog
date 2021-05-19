@@ -30,7 +30,7 @@ class Formatter {
         return this.getHeader(`Version ${version} (${date})`);
     }
     formatSectionList(title, items) {
-        if (!(title || items.length))
+        if (!(title && items.length))
             return '';
         let string = this.getSubHeader(title);
         string += items.join('\n');
