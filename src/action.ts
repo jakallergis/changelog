@@ -35,7 +35,8 @@ async function action(): Promise<void> {
     const format = 'slack'
     const ctx = {commitUrl, version, tags, format} as IChangelogContext
     const newChangelog = await generateChangelog(ctx)
-    setEvnVar('VERSION_CHANGELOG', newChangelog)
+    const envVarSet = setEvnVar('VERSION_CHANGELOG', newChangelog)
+    core.setOutput('envVarSet', envVarSet)
     core.setOutput('changelog', newChangelog)
   } catch (error) {
     console.log({error})
