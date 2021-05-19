@@ -13,13 +13,15 @@ class Formatter {
         this.subHeaderTemplate = '### {text}\n';
         this.scopeTemplate = '**[${scope}]**';
         this.linkTemplate = '[{text}]({url})';
+        this.commitTemplate = '- {scope}{message} ({link})';
     }
     formatCommit(commit) {
         const { message, type } = commit;
         const link = this.getCommitLink(commit);
         const scope = this.getCommitScope(commit);
         const formattedBody = this.getCommitBody(commit);
-        let formattedText = `- ${scope}${message} (${link})`;
+        const messageCtx = { scope, message, link };
+        let formattedText = formatUnicorn_1.default(this.commitTemplate, messageCtx);
         if ([CommitTypes_1.CommitTypes.FEATURE, CommitTypes_1.CommitTypes.FIX].includes(type)) {
             formattedText = `${formattedText}${formattedBody}`;
         }
@@ -75,6 +77,7 @@ class SlackFormatter extends Formatter {
         this.subHeaderTemplate = '*{text}*\n';
         this.scopeTemplate = '*[${scope}]*';
         this.linkTemplate = '<{url}|{text}>';
+        this.commitTemplate = '* {scope}{message} ({link})';
     }
 }
 const formatters = {

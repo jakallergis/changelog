@@ -37,7 +37,6 @@ const getTagsRange_1 = __importDefault(require("./utils/getTagsRange"));
 const getTagVersion_1 = __importDefault(require("./utils/getTagVersion"));
 const generateChangelog_1 = __importDefault(require("./utils/generateChangelog"));
 const getHasVersionTagOnHEAD_1 = __importDefault(require("./utils/getHasVersionTagOnHEAD"));
-const setEvnVar_1 = __importDefault(require("./utils/setEvnVar"));
 /**
  * This is the code that the Github Action will run.
  * Because we won't have access to the main project's
@@ -68,8 +67,6 @@ function action() {
             const format = 'slack';
             const ctx = { commitUrl, version, tags, format };
             const newChangelog = yield generateChangelog_1.default(ctx);
-            const envVarSet = setEvnVar_1.default('VERSION_CHANGELOG', newChangelog);
-            core.setOutput('envVarSet', envVarSet);
             core.setOutput('changelog', newChangelog);
         }
         catch (error) {

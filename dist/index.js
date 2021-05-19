@@ -9372,13 +9372,15 @@ class Formatter {
         this.subHeaderTemplate = '### {text}\n';
         this.scopeTemplate = '**[${scope}]**';
         this.linkTemplate = '[{text}]({url})';
+        this.commitTemplate = '- {scope}{message} ({link})';
     }
     formatCommit(commit) {
         const { message, type } = commit;
         const link = this.getCommitLink(commit);
         const scope = this.getCommitScope(commit);
         const formattedBody = this.getCommitBody(commit);
-        let formattedText = `- ${scope}${message} (${link})`;
+        const messageCtx = { scope, message, link };
+        let formattedText = formatUnicorn(this.commitTemplate, messageCtx);
         if ([CommitTypes.FEATURE, CommitTypes.FIX].includes(type)) {
             formattedText = `${formattedText}${formattedBody}`;
         }
@@ -9434,6 +9436,7 @@ class SlackFormatter extends Formatter {
         this.subHeaderTemplate = '*{text}*\n';
         this.scopeTemplate = '*[${scope}]*';
         this.linkTemplate = '<{url}|{text}>';
+        this.commitTemplate = '* {scope}{message} ({link})';
     }
 }
 const formatters = {
@@ -9511,33 +9514,6 @@ function getHasVersionTagOnHEAD() {
     return !!semver_default().valid(tag);
 }
 
-// EXTERNAL MODULE: external "fs"
-var external_fs_ = __nccwpck_require__(5747);
-var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
-;// CONCATENATED MODULE: ./src/utils/setEvnVar.ts
-
-
-
-const setEvnVar_CMD = `body=$(cat ./temp)
-body="\${body//'%'/'%25'}"
-body="\${body//$'\n'/'%0A'}"
-body="\${body//$'\r'/'%0D'}"
-echo "::set-env name={key}::$body"
-`;
-function setEvnVar(key, value) {
-    try {
-        external_fs_default().writeFileSync('./temp', value);
-        const command = formatUnicorn(setEvnVar_CMD, { key });
-        external_child_process_default().execSync(command).toString('utf-8');
-        return true;
-    }
-    catch (error) {
-        console.log({ error });
-        process.stderr.write(error.message);
-        return false;
-    }
-}
-
 ;// CONCATENATED MODULE: ./src/action.ts
 var action_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -9548,7 +9524,6 @@ var action_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _a
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-
 
 
 
@@ -9585,8 +9560,6 @@ function action() {
             const format = 'slack';
             const ctx = { commitUrl, version, tags, format };
             const newChangelog = yield generateChangelog(ctx);
-            const envVarSet = setEvnVar('VERSION_CHANGELOG', newChangelog);
-            core.setOutput('envVarSet', envVarSet);
             core.setOutput('changelog', newChangelog);
         }
         catch (error) {
