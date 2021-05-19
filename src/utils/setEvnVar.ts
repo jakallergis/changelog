@@ -1,12 +1,18 @@
+import fs from 'fs'
 import cp from 'child_process'
 import formatUnicorn from './formatUnicorn'
 
-const CMD = 'echo "{key}={value}" >> $GITHUB_ENV'
+const CMD = `body=$(cat ./temp)
+body="\${body//'%'/'%25'}"
+body="\${body//$'\n'/'%0A'}"
+body="\${body//$'\r'/'%0D'}"
+echo "::set-env name={key}::$body"
+`
 
 export default function setEvnVar(key: string, value: string): boolean {
   try {
-    const escapedValue = value.replace('"', '\\"')
-    const command = formatUnicorn(CMD, {key, value: escapedValue})
+    fs.writeFileSync('./temp', value)
+    const command = formatUnicorn(CMD, {key})
     cp.execSync(command).toString('utf-8')
     return true
   } catch (error) {
