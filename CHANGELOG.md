@@ -1,3 +1,13 @@
+# Version 1.6.4 (2021-05-24)
+
+### Changed Dependencies
+- **[$deps]** bump @actions/core from 1.2.7 to 1.3.0 ([ec6156f](https://github.com/jakallergis/changelog/commit/ec6156fd3bddb51beae7ec51f7f341e9a2d420e6))
+- **[$deps-dev]** bump eslint from 7.26.0 to 7.27.0 ([2e4cdfe](https://github.com/jakallergis/changelog/commit/2e4cdfe3e3fd6ff4663d34e76697e6f9fc64bf3a))
+- **[$deps-dev]** bump @types/node from 15.3.0 to 15.6.0 ([67ebe86](https://github.com/jakallergis/changelog/commit/67ebe86397178db7251d3ee51eb0cbf55b210ad1))
+- **[$deps-dev]** bump ts-node from 9.1.1 to 10.0.0 ([e0b850e](https://github.com/jakallergis/changelog/commit/e0b850e6f949b3d89adca54463aebf2ed598bcbf))
+
+
+
 # Version 1.6.3 (2021-05-24)
 
 ### Fixes
