@@ -70,7 +70,7 @@ class Formatter {
 class SlackFormatter extends Formatter {
   headerTemplate = '*{text}*\n\n'
   subHeaderTemplate = '*{text}*\n'
-  scopeTemplate = '*[${scope}]*'
+  scopeTemplate = '*[{scope}]*'
   linkTemplate = '<{url}|{text}>'
 }
 
