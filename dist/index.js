@@ -9434,7 +9434,7 @@ class SlackFormatter extends Formatter {
         super(...arguments);
         this.headerTemplate = '*{text}*\n\n';
         this.subHeaderTemplate = '*{text}*\n';
-        this.scopeTemplate = '*[${scope}]*';
+        this.scopeTemplate = '*[{scope}]*';
         this.linkTemplate = '<{url}|{text}>';
     }
 }

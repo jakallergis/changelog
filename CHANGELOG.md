@@ -1,3 +1,10 @@
+# Version 1.6.3 (2021-05-24)
+
+### Fixes
+- removed dollar sign in scope header of commit message ([bd69ed0](https://github.com/jakallergis/changelog/commit/bd69ed0cc3fe2ca45cb263a59d1924731771b28a))
+
+
+
 # Version 1.6.2 (2021-05-19)
 
 ### Chores
