@@ -1,3 +1,19 @@
+# Version 1.6.5 (2021-07-12)
+
+### Changed Dependencies
+- **[$deps-dev]** bump @types/node from 15.6.1 to 16.3.1 ([b7489d7](https://github.com/jakallergis/changelog/commit/b7489d7a333f087e08fe2e7e8dbbfd1940f7a97c))
+- **[$deps-dev]** bump @typescript-eslint/parser from 4.25.0 to 4.28.2 ([2e0dad4](https://github.com/jakallergis/changelog/commit/2e0dad4812c7b1a755c31579e5bdd0378b09a65f))
+- **[$deps-dev]** bump eslint from 7.27.0 to 7.30.0 ([fe1e44f](https://github.com/jakallergis/changelog/commit/fe1e44f17543b17ab14e307cd8a62e013412e064))
+- **[$deps-dev]** bump jest-circus from 27.0.1 to 27.0.6 ([43ef215](https://github.com/jakallergis/changelog/commit/43ef2150ad7946647a3f4a61f53e9f6d81bc3770))
+- **[$deps-dev]** bump prettier from 2.3.0 to 2.3.2 ([6a1e74b](https://github.com/jakallergis/changelog/commit/6a1e74bb9b80b64301ec6d85804347edd5433b30))
+- **[$deps-dev]** bump typescript from 4.2.4 to 4.3.2 ([28666d5](https://github.com/jakallergis/changelog/commit/28666d5d8b34c87f6b174c603601b44eac1050f6))
+- **[$deps-dev]** bump jest-circus from 26.6.3 to 27.0.1 ([b65a9b7](https://github.com/jakallergis/changelog/commit/b65a9b741313025572b2ae9f02e4a66e8cdfbd3f))
+- **[$deps-dev]** bump @vercel/ncc from 0.28.5 to 0.28.6 ([2466af1](https://github.com/jakallergis/changelog/commit/2466af1537f183a59047f4134e6de322fa29548f))
+- **[$deps-dev]** bump @types/node from 15.6.0 to 15.6.1 ([41a9b8b](https://github.com/jakallergis/changelog/commit/41a9b8b102dca04b0b7892b8f1c2f22ddcd35067))
+- **[$deps-dev]** bump @typescript-eslint/parser from 4.24.0 to 4.25.0 ([0354776](https://github.com/jakallergis/changelog/commit/03547762430a4332689fe8e70dfc90ea62aa2bdf))
+
+
+
 # Version 1.6.4 (2021-05-24)
 
 ### Changed Dependencies
